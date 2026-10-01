@@ -1,0 +1,83 @@
+Week 1: Python basics
+
+Day 1: variables, strings, print
+
+Concepts: variables, str/int/float, f-strings, type().
+Exercise: store a job name, status and duration, then print Job DS_LOAD_CUSTOMER has FAILED after 12.5 minutes.
+
+Day 2: comparisons and decisions
+
+Concepts: booleans, ==, >, if/elif/else.
+Exercise: given an exit code, print SUCCESS (0), WARNING (4), or FAILED (anything else), like Control-M.
+
+Day 3: lists
+
+Concepts: lists, indexing, append, len, slicing.
+Exercise: a list of 8 job names and a matching list of statuses. Print the first, the last, and the count.
+
+Day 4: loops
+
+Concepts: for, range, while, break.
+Exercise: loop through your jobs, print only the failed ones, and count how many failed.
+
+Day 5: mini-project, job status checker
+
+Combine everything: a script with a list of jobs that prints a summary like 8 jobs: 5 success, 2 failed, 1 warning.
+
+Weekend: explain the week to your husband in 5 minutes. If you can't explain a topic, redo it.
+
+Week 2: data, functions, files, JSON
+
+Day 1: dictionaries
+
+Concepts: key-value pairs, a list of dictionaries.
+Exercise: represent each job as {"name": ..., "status": ..., "minutes": ...} and find the slowest job.
+
+Day 2: functions
+
+Concepts: def, parameters, return.
+Exercise: write is_failed(job) and summarize(jobs), and reuse them from Day 1's data.
+
+Day 3: files and strings
+
+Concepts: open() with with, reading lines, split, strip, in.
+Exercise: create a 10-line text log by hand and count the lines containing ERROR. Compare your result with grep -c ERROR.
+
+Day 4: parsing and errors
+
+Concepts: try/except, FileNotFoundError, ValueError.
+Exercise: parse lines like 2026-10-01 02:15:03 ERROR DS_LOAD_CUSTOMER Connection timeout into dictionaries, and skip bad lines safely.
+
+Day 5: JSON and mini-project, log summarizer v1
+
+Concepts: what JSON is, json.load, json.dump.
+Project: read the log file, count lines by level (INFO/WARN/ERROR), and write summary.json.
+
+Weekend: the 5-minute explanation again, and a push to GitHub.
+
+Week 3: logs and APIs
+
+Day 1: modules and a fake log generator, part 1
+
+Concepts: import, random, datetime.
+Exercise: generate one realistic log line with a random time, level, job name and message.
+
+Day 2: log generator, part 2
+
+Concepts: sys.argv (or argparse), writing files.
+Project: python generate_logs.py 500 writes 500 lines to logs/sample.log, with realistic DataStage and Control-M style messages (timeouts, abends, lock waits).
+
+Day 3: analyzing the logs
+
+Concepts: collections.Counter, sorting.
+Project: from your generated log, find the top 5 failing jobs and the most common error messages, and save the result as JSON.
+
+Day 4: what an API actually is
+
+Concepts: HTTP request and response, URL, status codes (200, 404, 500), headers, JSON body.
+Exercise: pip install requests inside .venv, run pip freeze > requirements.txt, and call a free public API that needs no key. Print the status code and one field from the JSON.
+
+Day 5: mini-project, service health checker
+
+Concepts: timeouts, error handling, retries.
+Project: check 5 URLs, print UP/DOWN with response time, handle failures with try/except and one retry. This is a first version of the "check service status" tool your agent will use later.
