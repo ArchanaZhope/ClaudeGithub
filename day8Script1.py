@@ -7,7 +7,6 @@ with open('logs/sample.log',"r") as f:
 print(f"total lines {len(lines)}\n ")
 
 
-
 print("Level | Job")
 error_lines = [] #list intialize
 level_counts ={} # dict initialize
