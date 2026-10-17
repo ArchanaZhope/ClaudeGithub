@@ -3,6 +3,7 @@
 # Script : Mini project
 
 import random
+import sys
 from datetime import datetime, timedelta
 
 jobs = [
@@ -70,18 +71,34 @@ def make_log_line(when):
 
 
 
-     
+
+  
+if len(sys.argv) != 2:
+    print("Usage: python3 day11Sscript.py <count>")
+    sys.exit(1)
+try:
+    count = int(sys.argv[1])
+except ValueError:
+        print("Count must be whole number")
+        sys.exit(1)
+
+if count <= 0:
+        print("Count should be greater than 0")
+        sys.exit(1)
+
+print(f"You asked for {count} lines")
 log_line = []
 when = datetime(2027, 1, 16, 3, 35, 5)
-for _ in range(20):
-    line = make_log_line(when)
-    log_line.append(line)
-    if parse_line(line) is None:
-        print("log failed to parse")   
-    when = when + timedelta(seconds= random.randint(5,60))
+for _ in range(count):
+            line = make_log_line(when)
+            log_line.append(line)
+            if parse_line(line) is None:
+                print("log failed to parse")   
+            when = when + timedelta(seconds= random.randint(5,60))
 
 
 with open("logs/generated.log","w") as f:
-    for logline in log_line:
-      f.write(logline + "\n")
+            for logline in log_line:
+                f.write(logline + "\n")
 print("File updated with logs")
+
