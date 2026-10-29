@@ -7,10 +7,12 @@
 # seed: seed will provide same result for same question everytime the question is asked, it restrict the random choices of words.
 
 #What did temperature 0 give, and what did 1.5 give, in terms of “different answers out of 5”?
-#   with temp=0 it provides same answer with every run as the probability of choosing randomness of next token it uses most likely probability
-#   with temp=1.5 it provides different answer for 1 run out of 5 as the probability of choosing randomness of next token it decrease the probability of choosing next token.
-#                 better for brainstorming answer  
-#   however, both uses randomness. it doesnt mean it provide correct answer.
+#   with temp=0 it gave the same answer every time, because it always picks the most likely next token.
+#   with temp=1.5 and no seed it gave 5 different answers out of 5, because high
+#   temperature lets the model pick less likely words. With seed 42 it gave 1 out of 5,
+#   because the seed fixes the random choices. Good for brainstorming, not for tools. 
+
+#   Neither setting guarantees a correct answer: temp 0 only makes the answer repeatable.
 
 #What did fixing the seed change?
 # seed fix the choosing the randomness of next token irrespective how many times same question  has been asked.
@@ -19,6 +21,8 @@
 # Say which one you’d pick for temperature and whether you’d also set a seed.
 # i will set temp=0 as its reading log and classifying. classifying means it should be put in some particular category for that it needs to provide same result.
 # I will be using seed as i want fix result with same randomness to generate log category. 
+
+
 
 import requests
 
@@ -31,7 +35,7 @@ def ask(prompt,system="", temperature=0.8):
                 "options": {"num_ctx": 8192, "temperature":temperature,"seed":42}, 
                 "system":system
             }
-
+# Note: ask() always sends seed 42, so even a high temperature repeats its answer.
     try:
         response = requests.post("http://localhost:11434/api/generate", json=payload , timeout=300)
         if response.status_code == 200:
